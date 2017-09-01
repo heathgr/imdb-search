@@ -1,0 +1,13 @@
+{
+  "exclude": [
+    "**/spec/**",
+    "jsdom.config.js"
+  ],
+  "extension": [
+    ".jsx"
+  ],
+  "reporter": [
+    "text",
+    "html"
+  ]
+}
