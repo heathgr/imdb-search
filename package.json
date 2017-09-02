@@ -24,13 +24,15 @@
     "redux-saga"
   ],
   "dependencies": {
+    "axios": "^0.16.2",
+    "babel-polyfill": "^6.23.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "redux": "^3.7.2",
-    "redux-saga": "^0.14.8",
     "react-hot-loader": "^3.0.0-beta.7",
-    "babel-polyfill": "^6.23.0"
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.14.8"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -40,7 +42,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
-    "chai": "^4.1.1",
+    "chai": "^3.5.0",
     "chai-enzyme": "^0.8.0",
     "enzyme": "^2.9.1",
     "eslint": "^4.5.0",
@@ -53,6 +55,7 @@
     "mocha": "^3.2.0",
     "nyc": "^11.1.0",
     "react-test-renderer": "^15.6.1",
+    "redux-saga-tester": "^1.0.342",
     "sinon": "^3.2.1",
     "webpack": "^3.5.5",
     "webpack-build-notifier": "^0.1.13",
