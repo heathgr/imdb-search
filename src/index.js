@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import App from './components/App';
+import App from './containers/App';
 import root from './reducers/root';
 import start from './sagas/start';
 
@@ -21,7 +22,9 @@ const { dispatch } = store;
 function render(Component) {
   ReactDOM.render(
     <AppContainer>
-      <Component {...{ ...store.getState(), dispatch }} />
+      <Provider store={store}>
+        <Component />
+      </Provider>
     </AppContainer>,
     document.getElementById('app')
   );
@@ -39,7 +42,7 @@ window.onload = () => {
 
 // Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
+  module.hot.accept('./containers/App', () => {
     render(App);
   });
 }
