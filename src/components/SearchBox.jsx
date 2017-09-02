@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  SUBMIT_FETCH_PERSON_BY_ID,
-  SUBMIT_FETCH_TITLE_BY_ID,
-  SUBMIT_PERSON_SEARCH,
-  SUBMIT_TITLE_SEARCH,
+  FETCH_PERSON_BY_ID,
+  FETCH_TITLE_BY_ID,
+  PERSON_SEARCH,
+  TITLE_SEARCH,
 } from '../constants/searchTypes';
 
 class SearchBox extends Component {
   state = {
-    searchMode: 2,
+    searchMode: TITLE_SEARCH,
     searchString: '',
   }
 
@@ -27,26 +27,6 @@ class SearchBox extends Component {
     });
   }
 
-  submitSearch() {
-    switch (this.state.searchMode) {
-      case SUBMIT_FETCH_PERSON_BY_ID:
-        this.props.onSubmitFetchPersonById(this.state.searchString);
-        break;
-      case SUBMIT_FETCH_TITLE_BY_ID: {
-        this.props.onSubmitFetchTitleById(this.state.searchString);
-        break;
-      }
-      case SUBMIT_PERSON_SEARCH: {
-        this.props.onSubmitPersonSearch(this.state.searchString);
-        break;
-      }
-      default: {
-        this.props.onSubmitTitleSearch(this.state.searchString);
-        break;
-      }
-    }
-  }
-
   render() {
     return (
       <div style={{ display: 'flex' }}>
@@ -61,10 +41,10 @@ class SearchBox extends Component {
             }
           }
         >
-          <option value={SUBMIT_FETCH_PERSON_BY_ID}>Actor/Director By Id</option>
-          <option value={SUBMIT_FETCH_TITLE_BY_ID}>Movie By Id</option>
-          <option value={SUBMIT_TITLE_SEARCH}>Search Movies</option>
-          <option value={SUBMIT_PERSON_SEARCH}>Search Actors/Directors</option>
+          <option value={FETCH_PERSON_BY_ID}>Actor/Director By Id</option>
+          <option value={FETCH_TITLE_BY_ID}>Movie By Id</option>
+          <option value={TITLE_SEARCH}>Search Movies</option>
+          <option value={PERSON_SEARCH}>Search Actors/Directors</option>
         </select>
         <input
           type='text'
@@ -75,17 +55,20 @@ class SearchBox extends Component {
             }
           }
         />
-        <button onClick={() => this.submitSearch()}>search</button>
+        <button
+          onClick={
+            () => this.props.onSubmitSearch(this.state.searchString, this.state.searchMode)
+          }
+        >
+          search
+        </button>
       </div>
     );
   }
 }
 
 SearchBox.propTypes = {
-  onSubmitFetchPersonById: PropTypes.func.isRequired,
-  onSubmitFetchTitleById: PropTypes.func.isRequired,
-  onSubmitPersonSearch: PropTypes.func.isRequired,
-  onSubmitTitleSearch: PropTypes.func.isRequired,
+  onSubmitSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBox;

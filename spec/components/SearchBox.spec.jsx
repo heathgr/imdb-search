@@ -5,25 +5,16 @@ import chaiEnzyme from 'chai-enzyme';
 import { spy } from 'sinon';
 import SearchBox from '../../src/components/SearchBox';
 import {
-  SUBMIT_FETCH_PERSON_BY_ID,
-  SUBMIT_FETCH_TITLE_BY_ID,
-  SUBMIT_PERSON_SEARCH,
-  SUBMIT_TITLE_SEARCH,
+  FETCH_PERSON_BY_ID,
 } from '../../src/constants/searchTypes';
 
 describe('<SearchBox />', () => {
   chai.use(chaiEnzyme());
 
-  const onSubmitFetchPersonByIdSpy = spy();
-  const onSubmitFetchTitleByIdSpy = spy();
-  const onSubmitPersonSearchSpy = spy();
-  const onSubmitTitleSearchSpy = spy();
+  const onSubmitSearchSpy = spy();
   const testWrapper = mount(
     <SearchBox
-      onSubmitFetchPersonById={onSubmitFetchPersonByIdSpy}
-      onSubmitFetchTitleById={onSubmitFetchTitleByIdSpy}
-      onSubmitPersonSearch={onSubmitPersonSearchSpy}
-      onSubmitTitleSearch={onSubmitTitleSearchSpy}
+      onSubmitSearch={onSubmitSearchSpy}
     />
   );
   const testSearchTypeSelect = testWrapper.find('select').first();
@@ -36,10 +27,10 @@ describe('<SearchBox />', () => {
     expect(testSearchButton).to.be.present();
   });
 
-  it('Should call the onSubmitFetchPersonById function', () => {
+  it('Should call the onSubmitSearch function', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: SUBMIT_FETCH_PERSON_BY_ID,
+        value: FETCH_PERSON_BY_ID,
       },
     });
     testSearchInput.simulate('change', {
@@ -48,55 +39,7 @@ describe('<SearchBox />', () => {
       },
     });
     testSearchButton.simulate('click');
-    expect(onSubmitFetchPersonByIdSpy.calledOnce).to.equal(true);
-    expect(onSubmitFetchPersonByIdSpy.calledWith('nm0000120')).to.equal(true);
-  });
-
-  it('Should call the onSubmitFetchTitleById function.', () => {
-    testSearchTypeSelect.simulate('change', {
-      target: {
-        value: SUBMIT_FETCH_TITLE_BY_ID,
-      },
-    });
-    testSearchInput.simulate('change', {
-      target: {
-        value: 'mm0000374',
-      },
-    });
-    testSearchButton.simulate('click');
-    expect(onSubmitFetchTitleByIdSpy.calledOnce).to.equal(true);
-    expect(onSubmitFetchTitleByIdSpy.calledWith('mm0000374')).to.equal(true);
-  });
-
-  it('Should call the onSubmitPersonSearch function', () => {
-    testSearchTypeSelect.simulate('change', {
-      target: {
-        value: SUBMIT_PERSON_SEARCH,
-      },
-    });
-    testSearchInput.simulate('change', {
-      target: {
-        value: 'James Cameron',
-      },
-    });
-    testSearchButton.simulate('click');
-    expect(onSubmitPersonSearchSpy.calledOnce).to.equal(true);
-    expect(onSubmitPersonSearchSpy.calledWith('James Cameron')).to.equal(true);
-  });
-
-  it('Should call the onSubmitPersonSearch function', () => {
-    testSearchTypeSelect.simulate('change', {
-      target: {
-        value: SUBMIT_TITLE_SEARCH,
-      },
-    });
-    testSearchInput.simulate('change', {
-      target: {
-        value: 'Escape From New York',
-      },
-    });
-    testSearchButton.simulate('click');
-    expect(onSubmitTitleSearchSpy.calledOnce).to.equal(true);
-    expect(onSubmitTitleSearchSpy.calledWith('Escape From New York')).to.equal(true);
+    expect(onSubmitSearchSpy.calledOnce).to.equal(true);
+    expect(onSubmitSearchSpy.calledWith('nm0000120', FETCH_PERSON_BY_ID)).to.equal(true);
   });
 });

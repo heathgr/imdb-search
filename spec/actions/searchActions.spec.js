@@ -1,112 +1,61 @@
 import { expect } from 'chai';
 import {
-  submitPersonSearch,
-  submitTitleSearch,
-  submitFetchPersonById,
-  submitFetchTitleById,
-  startedHandleSubmitPersonSearchSaga,
-  startedHandleSubmitTitleSearchSaga,
-  startedHandleSubmitFetchPersonByIdSaga,
-  startedHandleSubmitFetchTitleByIdSaga,
+  submitSearch,
+  gotSearchResults,
+  gotSearchError,
+  startedHandleSubmitSearchSagas,
 } from '../../src/actions/searchActions';
 import {
-  SUBMIT_PERSON_SEARCH,
-  SUBMIT_TITLE_SEARCH,
-  SUBMIT_FETCH_PERSON_BY_ID,
-  SUBMIT_FETCH_TITLE_BY_ID,
-  STARTED_HANDLE_SUBMIT_PERSON_SEARCH_SAGA,
-  STARTED_HANDLE_SUBMIT_TITLE_SEARCH_SAGA,
-  STARTED_HANDLE_SUBMIT_FETCH_PERSON_BY_ID_SAGA,
-  STARTED_HANDLE_SUBMIT_FETCH_TITLE_BY_ID_SAGA,
+  SUBMIT_SEARCH,
+  GOT_SEARCH_RESULTS,
+  STARTED_HANDLE_SUBMIT_SEARCH_SAGA,
+  GOT_SEARCH_ERROR,
 } from '../../src/constants/searchActionTypes';
+import {
+  PERSON_SEARCH,
+} from '../../src/constants/searchTypes';
 
 describe('Search Actions', () => {
-  it('Should create a SUBMIT_PERSON_SEARCH action', () => {
+  it('Should create a SUBMIT_SEARCH action', () => {
     const expectedAction = {
-      type: SUBMIT_PERSON_SEARCH,
-      person: 'Tom Cruise',
+      type: SUBMIT_SEARCH,
+      searchString: 'Tom Cruise',
+      searchType: PERSON_SEARCH,
     };
-    const testAction = submitPersonSearch('Tom Cruise');
+    const testAction = submitSearch('Tom Cruise', PERSON_SEARCH);
 
     expect(testAction).to.deep.equal(expectedAction);
   });
 
-  it('Should create a SUBMIT_TITLE_SEARCH action.', () => {
-    const expectedAction = {
-      type: SUBMIT_TITLE_SEARCH,
-      title: 'Stargate',
-      year: null,
+  it('Should create a GOT_SEARCH_RESULTS action', () => {
+    const testData = {
+      name: 'Test Data',
+      description: 'Just some test data',
     };
-
-    const testAction = submitTitleSearch('Stargate');
+    const expectedAction = {
+      type: GOT_SEARCH_RESULTS,
+      data: testData,
+    };
+    const testAction = gotSearchResults(testData);
 
     expect(testAction).to.deep.equal(expectedAction);
   });
 
-  it('Should create a SUBMIT_TITLE_SEARCH action with year.', () => {
+  it('Should create a GOT_SEARCH_ERROR action.', () => {
     const expectedAction = {
-      type: SUBMIT_TITLE_SEARCH,
-      title: '2001',
-      year: 1968,
+      type: GOT_SEARCH_ERROR,
+      message: 'something broke',
     };
-
-    const testAction = submitTitleSearch('2001', 1968);
+    const testAction = gotSearchError('something broke');
 
     expect(testAction).to.deep.equal(expectedAction);
   });
 
-  it('Should create a SUBMIT_FETCH_PERSON_BY_ID action', () => {
+  it('Should create a STARTED_HANDLE_SUBMIT_SEARCH_SAGA action.', () => {
     const expectedAction = {
-      type: SUBMIT_FETCH_PERSON_BY_ID,
-      id: 'nm0000120',
+      type: STARTED_HANDLE_SUBMIT_SEARCH_SAGA,
     };
-    const testAction = submitFetchPersonById('nm0000120');
-
-    expect(testAction).to.deep.equal(expectedAction);
-  });
-
-  it('Should create a SUBMIT_FETCH_TITLE_BY_ID action', () => {
-    const expectedAction = {
-      type: SUBMIT_FETCH_TITLE_BY_ID,
-      id: 'aa0000139',
-    };
-    const testAction = submitFetchTitleById('aa0000139');
-
-    expect(testAction).to.deep.equal(expectedAction);
-  });
-
-  it('Should create a STARTED_SUBMIT_PERSON_SEARCH_SAGA action', () => {
-    const expectedAction = {
-      type: STARTED_HANDLE_SUBMIT_PERSON_SEARCH_SAGA,
-    };
-    const testAction = startedHandleSubmitPersonSearchSaga();
-
-    expect(testAction).to.deep.equal(expectedAction);
-  });
-
-  it('Should create a STARTED_SUBMIT_TITLE_SEARCH_SAGA action.', () => {
-    const expectedAction = {
-      type: STARTED_HANDLE_SUBMIT_TITLE_SEARCH_SAGA,
-    };
-    const testAction = startedHandleSubmitTitleSearchSaga();
-
-    expect(testAction).to.deep.equal(expectedAction);
-  });
-
-  it('Should create a STARTED_HANDLE_SUBMIT_FETCH_PERSON_BY_ID_SAGA action.', () => {
-    const expectedAction = {
-      type: STARTED_HANDLE_SUBMIT_FETCH_PERSON_BY_ID_SAGA,
-    };
-    const testAction = startedHandleSubmitFetchPersonByIdSaga();
-
-    expect(testAction).to.deep.equal(expectedAction);
-  });
-
-  it('Should create a STARTED_HANDLE_SUBMIT_FETCH_TITLE_BY_ID_SAGA action.', () => {
-    const expectedAction = {
-      type: STARTED_HANDLE_SUBMIT_FETCH_TITLE_BY_ID_SAGA,
-    };
-    const testAction = startedHandleSubmitFetchTitleByIdSaga();
+    const testAction = startedHandleSubmitSearchSagas();
 
     expect(testAction).to.deep.equal(expectedAction);
   });
