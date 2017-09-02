@@ -1,3 +1,5 @@
+/* eslint global-require: 0 */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -17,7 +19,6 @@ const store = createStore(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
-const { dispatch } = store;
 
 function render(Component) {
   ReactDOM.render(
@@ -43,6 +44,8 @@ window.onload = () => {
 // Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('./containers/App', () => {
-    render(App);
+    const NewApp = require('./containers/App').default;
+
+    render(NewApp);
   });
 }

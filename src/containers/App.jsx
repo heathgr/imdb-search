@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SearchBox from '../components/SearchBox';
 import {
   submitFetchPersonById,
   submitFetchTitleById,
@@ -7,9 +8,16 @@ import {
   submitTitleSearch,
 } from '../actions/searchActions';
 
-const App = props => {
-  return <div>Welcome to Imdb Search</div>
-};
+const App = props => (
+  <div>
+    <SearchBox
+      onSubmitFetchPersonById={props.onSubmitFetchPersonById}
+      onSubmitFetchTitleById={props.onSubmitFetchTitleById}
+      onSubmitPersonSearch={props.onSubmitPersonSearch}
+      onSubmitTitleSearch={props.onSubmitTitleSearch}
+    />
+  </div>
+);
 
 const stateToProps = () => ({
 
