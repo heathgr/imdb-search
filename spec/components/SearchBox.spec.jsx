@@ -4,6 +4,12 @@ import { mount } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import { spy } from 'sinon';
 import SearchBox from '../../src/components/SearchBox';
+import {
+  SUBMIT_FETCH_PERSON_BY_ID,
+  SUBMIT_FETCH_TITLE_BY_ID,
+  SUBMIT_PERSON_SEARCH,
+  SUBMIT_TITLE_SEARCH,
+} from '../../src/constants/searchTypes';
 
 describe('<SearchBox />', () => {
   chai.use(chaiEnzyme());
@@ -33,7 +39,7 @@ describe('<SearchBox />', () => {
   it('Should call the onSubmitFetchPersonById function', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: 0,
+        value: SUBMIT_FETCH_PERSON_BY_ID,
       },
     });
     testSearchInput.simulate('change', {
@@ -49,7 +55,7 @@ describe('<SearchBox />', () => {
   it('Should call the onSubmitFetchTitleById function.', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: 1,
+        value: SUBMIT_FETCH_TITLE_BY_ID,
       },
     });
     testSearchInput.simulate('change', {
@@ -65,7 +71,7 @@ describe('<SearchBox />', () => {
   it('Should call the onSubmitPersonSearch function', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: 2,
+        value: SUBMIT_PERSON_SEARCH,
       },
     });
     testSearchInput.simulate('change', {
@@ -81,7 +87,7 @@ describe('<SearchBox />', () => {
   it('Should call the onSubmitPersonSearch function', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: 3,
+        value: SUBMIT_TITLE_SEARCH,
       },
     });
     testSearchInput.simulate('change', {

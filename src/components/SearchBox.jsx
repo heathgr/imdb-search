@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-const SUBMIT_FETCH_PERSON_BY_ID = 0;
-const SUBMIT_FETCH_TITLE_BY_ID = 1;
-const SUBMIT_PERSON_SEARCH = 2;
-const SUBMIT_TITLE_SEARCH = 3;
+import {
+  SUBMIT_FETCH_PERSON_BY_ID,
+  SUBMIT_FETCH_TITLE_BY_ID,
+  SUBMIT_PERSON_SEARCH,
+  SUBMIT_TITLE_SEARCH,
+} from '../constants/searchTypes';
 
 class SearchBox extends Component {
   state = {
@@ -50,22 +51,20 @@ class SearchBox extends Component {
     return (
       <div style={{ display: 'flex' }}>
         <div>
-          Search By:
+          Search Type:
         </div>
         <select
           value={this.state.searchMode}
           onChange={
             (evt) => {
-              const searchMode = parseInt(evt.target.value, 10);
-
-              this.setSearchMode(searchMode);
+              this.setSearchMode(evt.target.value);
             }
           }
         >
-          <option value={0}>Actor/Director By Id</option>
-          <option value={1}>Movie By Id</option>
-          <option value={2}>Search Movies</option>
-          <option value={3}>Search Actors/Directors</option>
+          <option value={SUBMIT_FETCH_PERSON_BY_ID}>Actor/Director By Id</option>
+          <option value={SUBMIT_FETCH_TITLE_BY_ID}>Movie By Id</option>
+          <option value={SUBMIT_TITLE_SEARCH}>Search Movies</option>
+          <option value={SUBMIT_PERSON_SEARCH}>Search Actors/Directors</option>
         </select>
         <input
           type='text'
