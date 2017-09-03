@@ -26,9 +26,6 @@ const ResultsTable = (props) => {
     <BootstrapTable
       data={props.results}
       className='addSideMargin'
-      options={{
-        defaultSortName: 'name',
-      }}
       striped
     >
       {

@@ -3,7 +3,7 @@ import {
   submitSearch,
   gotSearchResults,
   gotSearchError,
-  startedHandleSubmitSearchSagas,
+  startedHandleSubmitSearchSaga,
 } from '../../src/actions/searchActions';
 import {
   SUBMIT_SEARCH,
@@ -65,7 +65,7 @@ describe('Search Actions', () => {
     const expectedAction = {
       type: STARTED_HANDLE_SUBMIT_SEARCH_SAGA,
     };
-    const testAction = startedHandleSubmitSearchSagas();
+    const testAction = startedHandleSubmitSearchSaga();
 
     expect(testAction).to.deep.equal(expectedAction);
   });
