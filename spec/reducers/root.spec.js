@@ -29,8 +29,8 @@ describe('Root Reducer', () => {
     });
     const testState = root(undefined, testAction);
     const expectedState = {
-      searchType: null,
-      searchString: null,
+      searchType: 0,
+      searchString: '',
       searchPage: 0,
       resultCount: 3,
       results: [

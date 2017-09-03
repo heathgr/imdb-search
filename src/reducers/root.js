@@ -1,8 +1,8 @@
 import { GOT_SEARCH_RESULTS, SUBMIT_SEARCH } from '../constants/searchActionTypes';
 
 const initialState = {
-  searchType: null,
-  searchString: null,
+  searchType: 0,
+  searchString: '',
   searchPage: 0,
   resultCount: 0,
   results: [],
@@ -32,5 +32,6 @@ const root = (state = initialState, action) => {
 };
 
 export const getResults = state => state.results;
+export const getSearchType = state => state.searchType;
 
 export default root;

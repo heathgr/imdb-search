@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchBox from '../components/SearchBox';
 import ResultsTable from '../components/ResultsTable';
-import { getResults } from '../reducers/root';
+import { getResults, getSearchType } from '../reducers/root';
 import { submitSearch } from '../actions/searchActions';
 
 const App = props => (
   <div>
     <SearchBox onSubmitSearch={props.onSubmitSearch} />
-    <ResultsTable results={props.results} />
+    <ResultsTable results={props.results} searchType={props.searchType} />
   </div>
 );
 
 const stateToProps = state => ({
   results: getResults(state),
+  searchType: getSearchType(state),
 });
 
 const dispatchToProps = dispatch => ({
@@ -22,6 +23,7 @@ const dispatchToProps = dispatch => ({
 });
 
 App.propTypes = {
+  searchType: PropTypes.number.isRequired,
   onSubmitSearch: PropTypes.func.isRequired,
 };
 
