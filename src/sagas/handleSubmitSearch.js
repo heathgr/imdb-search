@@ -8,10 +8,11 @@ import searchConfig from '../constants/searchConfig';
 function* submitSearch(action) {
   try {
     const searchTypeString = searchConfig.types[action.searchType].name;
-    const searchString = `https://swapi.co/api/${searchTypeString}/?search=${action.searchString}&page=${action.searchPage}`;
-    const result = yield get(searchString);
+    const searchString = action.searchString.replace(/ /g, '+');
+    const searchURL = `https://swapi.co/api/${searchTypeString}/?search=${searchString}&page=${action.searchPage}`;
+    const result = yield get(searchURL);
     yield put(gotSearchResults(result.data));
-  } catch(e) {
+  } catch (e) {
     yield put(gotSearchError(e));
   }
   yield null;

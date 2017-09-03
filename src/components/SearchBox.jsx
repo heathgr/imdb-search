@@ -11,7 +11,7 @@ class SearchBox extends Component {
   setSearchMode(searchMode) {
     this.setState({
       ...this.state,
-      searchMode,
+      searchMode: parseInt(searchMode, 10),
     });
   }
 

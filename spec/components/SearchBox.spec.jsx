@@ -27,16 +27,16 @@ describe('<SearchBox />', () => {
   it('Should call the onSubmitSearch function', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: 0,
+        value: 1,
       },
     });
     testSearchInput.simulate('change', {
       target: {
-        value: 'nm0000120',
+        value: 'c3po',
       },
     });
     testSearchButton.simulate('click');
     expect(onSubmitSearchSpy.calledOnce).to.equal(true);
-    expect(onSubmitSearchSpy.calledWith('nm0000120', 0)).to.equal(true);
+    expect(onSubmitSearchSpy.calledWith('c3po', 1)).to.equal(true);
   });
 });
