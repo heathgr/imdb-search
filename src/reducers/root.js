@@ -32,6 +32,8 @@ const root = (state = initialState, action) => {
 };
 
 export const getResults = state => state.results;
+export const getResultCount = state => state.resultCount;
 export const getSearchType = state => state.searchType;
+export const getSearchPage = state => state.searchPage;
 
 export default root;

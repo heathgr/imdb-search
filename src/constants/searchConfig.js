@@ -35,7 +35,7 @@ export default {
         },
         {
           title: 'Climate',
-          selector: 'climate'
+          selector: 'climate',
         },
         {
           title: 'Gravity',
@@ -49,6 +49,18 @@ export default {
         {
           title: 'Name',
           selector: 'name',
+        },
+        {
+          title: 'Manufacturer',
+          selector: 'manufacturer',
+        },
+        {
+          title: 'Length (in meters)',
+          selector: 'length',
+        },
+        {
+          title: 'Hyperdrive Rating',
+          selector: 'hyperdrive_rating',
         },
       ],
     },

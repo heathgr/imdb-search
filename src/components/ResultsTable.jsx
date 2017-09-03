@@ -33,7 +33,7 @@ const ResultsTable = (props) => {
 
 ResultsTable.propTypes = {
   results: PropTypes.array.isRequired,
-
+  searchType: PropTypes.number.isRequired,
 };
 
 export default ResultsTable;

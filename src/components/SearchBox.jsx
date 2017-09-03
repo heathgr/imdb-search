@@ -24,7 +24,7 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex' }}>
+      <div className='flexRow addMargin'>
         <div>
           Search For:
         </div>

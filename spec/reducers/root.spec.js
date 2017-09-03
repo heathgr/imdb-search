@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { SUBMIT_SEARCH, GOT_SEARCH_RESULTS } from '../../src/constants/searchActionTypes';
 import { submitSearch, gotSearchResults } from '../../src/actions/searchActions';
 import root from '../../src/reducers/root';
 
