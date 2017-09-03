@@ -1,4 +1,4 @@
-import { GOT_SEARCH_RESULTS, SUBMIT_SEARCH } from '../constants/searchActionTypes';
+import { GOT_SEARCH_RESULTS, SUBMIT_SEARCH, SUBMIT_SEARCH_PAGE } from '../constants/searchActionTypes';
 
 const initialState = {
   searchType: 0,
@@ -18,6 +18,12 @@ const root = (state = initialState, action) => {
         searchPage: action.searchPage,
       };
     }
+    case SUBMIT_SEARCH_PAGE: {
+      return {
+        ...state,
+        searchPage: action.searchPage,
+      };
+    }
     case GOT_SEARCH_RESULTS: {
       return {
         ...state,
@@ -34,6 +40,7 @@ const root = (state = initialState, action) => {
 export const getResults = state => state.results;
 export const getResultCount = state => state.resultCount;
 export const getSearchType = state => state.searchType;
+export const getSearchString = state => state.searchString;
 export const getSearchPage = state => state.searchPage;
 
 export default root;

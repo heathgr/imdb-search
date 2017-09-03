@@ -5,7 +5,7 @@ import SearchBox from '../components/SearchBox';
 import ResultsTable from '../components/ResultsTable';
 import PageSelector from '../components/PageSelector';
 import { getResults, getSearchType, getResultCount, getSearchPage } from '../reducers/root';
-import { submitSearch } from '../actions/searchActions';
+import { submitSearch, submitSearchPage } from '../actions/searchActions';
 
 const App = props => (
   <div>
@@ -13,7 +13,11 @@ const App = props => (
     <h1 className='flexRow'>Star Wars Search</h1>
     <SearchBox onSubmitSearch={props.onSubmitSearch} />
     <ResultsTable results={props.results} searchType={props.searchType} />
-    <PageSelector resultCount={props.resultCount} searchPage={props.searchPage} />
+    <PageSelector
+      resultCount={props.resultCount}
+      searchPage={props.searchPage}
+      onSubmitSearchPage={props.onSubmitSearchPage}
+    />
   </div>
 );
 
@@ -26,6 +30,7 @@ const stateToProps = state => ({
 
 const dispatchToProps = dispatch => ({
   onSubmitSearch: (searchString, searchType) => { dispatch(submitSearch(searchString, searchType)); },
+  onSubmitSearchPage: (searchPage) => { dispatch(submitSearchPage(searchPage)); },
 });
 
 App.propTypes = {
@@ -34,6 +39,7 @@ App.propTypes = {
   searchType: PropTypes.number.isRequired,
   searchPage: PropTypes.number.isRequired,
   onSubmitSearch: PropTypes.func.isRequired,
+  onSubmitSearchPage: PropTypes.func.isRequired,
 };
 
 export default connect(stateToProps, dispatchToProps)(App);

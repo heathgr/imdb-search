@@ -12,7 +12,7 @@ const ResultsTable = (props) => {
   const columns = searchConfig.types[props.searchType].tableColumns;
 
   return (
-    <BootstrapTable data={props.results}>
+    <BootstrapTable data={props.results} className='addSideMargin'>
       {
         columns.map(
           (column, i) => (

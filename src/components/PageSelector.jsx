@@ -8,7 +8,22 @@ const PageSelector = (props) => {
     (pageCount > 1) && <div className='flexRow'>
       {
         Array(pageCount).fill(null).map(
-          (item, i) => <div className={props.searchPage === (i + 1) ? 'pageButton currentPageButton' : 'pageButton'}>{i + 1}</div>
+          (item, i) => {
+            const pageNumber = i + 1;
+            const className = props.searchPage === pageNumber ? 'pageButton currentPageButton' : 'pageButton';
+
+            return (
+              <div
+                key={pageNumber}
+                className={className}
+                onClick={
+                  () => props.onSubmitSearchPage(pageNumber)
+                }
+              >
+                {pageNumber}
+              </div>
+            );
+          }
         )
       }
     </div>
@@ -17,6 +32,7 @@ const PageSelector = (props) => {
 
 PageSelector.propTypes = {
   searchPage: PropTypes.number.isRequired,
+  onSubmitSearchPage: PropTypes.func.isRequired,
   resultCount: PropTypes.number.isRequired,
 };
 
