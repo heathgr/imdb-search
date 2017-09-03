@@ -1,4 +1,0 @@
-export const FETCH_PERSON_BY_ID = 'FETCH_PERSON_BY_ID';
-export const FETCH_TITLE_BY_ID = 'FETCH_TITLE_BY_ID';
-export const PERSON_SEARCH = 'PERSON_SEARCH';
-export const TITLE_SEARCH = 'TITLE_SEARCH';

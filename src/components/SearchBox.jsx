@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  FETCH_PERSON_BY_ID,
-  FETCH_TITLE_BY_ID,
-  PERSON_SEARCH,
-  TITLE_SEARCH,
-} from '../constants/searchTypes';
+import searchConfig from '../constants/searchConfig';
 
 class SearchBox extends Component {
   state = {
-    searchMode: TITLE_SEARCH,
+    searchMode: searchConfig.default,
     searchString: '',
   }
 
@@ -31,7 +26,7 @@ class SearchBox extends Component {
     return (
       <div style={{ display: 'flex' }}>
         <div>
-          Search Type:
+          Search For:
         </div>
         <select
           value={this.state.searchMode}
@@ -41,10 +36,11 @@ class SearchBox extends Component {
             }
           }
         >
-          <option value={FETCH_PERSON_BY_ID}>Actor/Director By Id</option>
-          <option value={FETCH_TITLE_BY_ID}>Movie By Id</option>
-          <option value={TITLE_SEARCH}>Search Movies</option>
-          <option value={PERSON_SEARCH}>Search Actors/Directors</option>
+          {
+            searchConfig.types.map(
+              (type, i) => <option value={i} key={type.name}>{type.name}</option>
+            )
+          }
         </select>
         <input
           type='text'

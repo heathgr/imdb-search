@@ -11,18 +11,28 @@ import {
   STARTED_HANDLE_SUBMIT_SEARCH_SAGA,
   GOT_SEARCH_ERROR,
 } from '../../src/constants/searchActionTypes';
-import {
-  PERSON_SEARCH,
-} from '../../src/constants/searchTypes';
 
 describe('Search Actions', () => {
   it('Should create a SUBMIT_SEARCH action', () => {
     const expectedAction = {
       type: SUBMIT_SEARCH,
-      searchString: 'Tom Cruise',
-      searchType: PERSON_SEARCH,
+      searchString: 'Skywalker',
+      searchType: 1,
+      searchPage: 1,
     };
-    const testAction = submitSearch('Tom Cruise', PERSON_SEARCH);
+    const testAction = submitSearch('Skywalker', 1);
+
+    expect(testAction).to.deep.equal(expectedAction);
+  });
+
+  it('Should create a SUBMIT_SEARCH action with search page number', () => {
+    const expectedAction = {
+      type: SUBMIT_SEARCH,
+      searchString: 'R2',
+      searchType: 1,
+      searchPage: 3,
+    };
+    const testAction = submitSearch('R2', 1, 3);
 
     expect(testAction).to.deep.equal(expectedAction);
   });

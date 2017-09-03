@@ -5,10 +5,11 @@ import {
   GOT_SEARCH_ERROR,
 } from '../constants/searchActionTypes';
 
-export const submitSearch = (searchString, searchType) => ({
+export const submitSearch = (searchString, searchType, searchPage = 1) => ({
   type: SUBMIT_SEARCH,
   searchString,
   searchType,
+  searchPage,
 });
 
 export const gotSearchResults = data => ({

@@ -4,9 +4,6 @@ import { mount } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import { spy } from 'sinon';
 import SearchBox from '../../src/components/SearchBox';
-import {
-  FETCH_PERSON_BY_ID,
-} from '../../src/constants/searchTypes';
 
 describe('<SearchBox />', () => {
   chai.use(chaiEnzyme());
@@ -30,7 +27,7 @@ describe('<SearchBox />', () => {
   it('Should call the onSubmitSearch function', () => {
     testSearchTypeSelect.simulate('change', {
       target: {
-        value: FETCH_PERSON_BY_ID,
+        value: 0,
       },
     });
     testSearchInput.simulate('change', {
@@ -40,6 +37,6 @@ describe('<SearchBox />', () => {
     });
     testSearchButton.simulate('click');
     expect(onSubmitSearchSpy.calledOnce).to.equal(true);
-    expect(onSubmitSearchSpy.calledWith('nm0000120', FETCH_PERSON_BY_ID)).to.equal(true);
+    expect(onSubmitSearchSpy.calledWith('nm0000120', 0)).to.equal(true);
   });
 });
