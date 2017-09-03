@@ -2,20 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchBox from '../components/SearchBox';
-import {
-  submitSearch,
-} from '../actions/searchActions';
+import ResultsTable from '../components/ResultsTable';
+import { getResults } from '../reducers/root';
+import { submitSearch } from '../actions/searchActions';
 
 const App = props => (
   <div>
-    <SearchBox
-      onSubmitSearch={props.onSubmitSearch}
-    />
+    <SearchBox onSubmitSearch={props.onSubmitSearch} />
+    <ResultsTable results={props.results} />
   </div>
 );
 
-const stateToProps = () => ({
-
+const stateToProps = state => ({
+  results: getResults(state),
 });
 
 const dispatchToProps = dispatch => ({

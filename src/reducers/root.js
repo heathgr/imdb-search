@@ -31,4 +31,6 @@ const root = (state = initialState, action) => {
   }
 };
 
+export const getResults = state => state.results;
+
 export default root;
