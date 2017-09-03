@@ -3,6 +3,22 @@ import PropTypes from 'prop-types';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import searchConfig from '../constants/searchConfig';
 
+const getCaret = (direction) => {
+  if (direction === 'asc') {
+    return (
+      <span> ↑</span>
+    );
+  }
+  if (direction === 'desc') {
+    return (
+      <span> ↓</span>
+    );
+  }
+  return (
+    <span />
+  );
+};
+
 const ResultsTable = (props) => {
   const columns = searchConfig.types[props.searchType].tableColumns;
 
@@ -15,6 +31,7 @@ const ResultsTable = (props) => {
               dataField={column.selector}
               key={column.title}
               isKey={i === 0}
+              caretRender={getCaret}
               dataSort
             >
               {column.title}
