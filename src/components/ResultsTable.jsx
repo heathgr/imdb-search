@@ -23,7 +23,14 @@ const ResultsTable = (props) => {
   const columns = searchConfig.types[props.searchType].tableColumns;
 
   return (
-    <BootstrapTable data={props.results} className='addSideMargin'>
+    <BootstrapTable
+      data={props.results}
+      className='addSideMargin'
+      options={{
+        defaultSortName: 'name',
+      }}
+      striped
+    >
       {
         columns.map(
           (column, i) => (

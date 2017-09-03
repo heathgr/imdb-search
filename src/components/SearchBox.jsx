@@ -22,6 +22,10 @@ class SearchBox extends Component {
     });
   }
 
+  submitSearch() {
+    this.props.onSubmitSearch(this.state.searchString, this.state.searchMode);
+  }
+
   render() {
     return (
       <div className='flexRow addMargin'>
@@ -29,7 +33,7 @@ class SearchBox extends Component {
           Search For:
         </div>
         <select
-          value={this.state.searchMode}
+          defaultValue={this.state.searchMode}
           onChange={
             (evt) => {
               this.setSearchMode(evt.target.value);
@@ -50,10 +54,18 @@ class SearchBox extends Component {
               this.setSearchString(evt.target.value);
             }
           }
+          onKeyDown={
+            (evt) => {
+              if (evt.keyCode === 13) { //if the keypressed is enter
+                this.setSearchString(evt.target.value);
+                this.submitSearch();
+              }
+            }
+          }
         />
         <button
           onClick={
-            () => this.props.onSubmitSearch(this.state.searchString, this.state.searchMode)
+            () => this.submitSearch()
           }
         >
           search
